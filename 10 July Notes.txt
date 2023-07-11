@@ -1,0 +1,97 @@
+﻿SQL 10/7
+
+SQL is a standard language for storing, manipulating and retrieving data in databases.
+
+CREATE A TABLE QUERY:
+
+CREATE TABLE cities(
+name VARCHAR(50),
+country VARCHAR(50),
+population INTEGER,
+area INTEGER
+);
+TO INSERT INTO THE TABLE QUERY :
+INSERT INTO
+cities(name,country,population,area)
+VALUES ('Delhi', 'India', 16753235, 1484);
+
+TO DELETE SOMETHING FROM THE TABLE :
+DELETE FROM cities WHERE name ='Delhi';
+
+TO GET A ROUND OFF VALUE :
+SELECT name, population / area AS densities FROM cities;
+
+TO CONCAT TWO COLUMNS AND MAKE THEM IN:
+UPPER CASE:
+SELECT UPPER (CONCAT(name, ', ' ,
+country)) AS location FROM cities;
+
+TO UPDATE A PARTICULAR ROW ENTITY :
+UPDATE cities SET name = 'Delhi' WHERE
+name = 'Goa';
+TO GET PARTICULAR VALUES IN A GIVEN RANGE :
+SELECT * FROM cities WHERE area BETWEEN
+2000 AND 10000;
+
+TO GET ENTIRE TABLE :
+SELECT * FROM cities;
+
+OPERATORS:
+SELECT name,population, area  FROM cities WHERE area>2000 AND population>1000000;
+SELECT name,population, area  FROM cities WHERE area<2000 OR population<1000000;
+
+TO GET THE AREA LARGER THAN 2000:
+SELECT name, area FROM cities WHERE area >=2000;
+
+TO GET THE MINIMUM POPULATION CITY
+SELECT * FROM cities WHERE population = (SELECT MIN(population)FROM cities);
+
+TO GET THE MAXIMUM POPULATION CITY
+SELECT * FROM cities WHERE population = (SELECT MAX(population)FROM cities);
+
+JOINS :
+Inner Joins
+Outer Join
+Left Join
+Right Join
+
+
+
+Exercise
+CREATE TABLE cities(
+  name VARCHAR(50),
+  country VARCHAR(50),
+  population INTEGER,
+  area INTEGER
+);
+INSERT INTO
+  cities(name, country, population, area)
+VALUES('Tokyo', 'japan', 13515271, 2191),
+  ('Delhi', 'India', 16753235, 1484),
+  ('Shanghai', 'China', 24870895, 6341),
+  ('Sao Paulo', 'Brazil', 12252023, 1521),
+  ('Mexico City', 'Mexico', 9209944, 1485),
+  ('Cario', 'Egypt', 9500000, 3085),
+  ('Mumbai', 'India', 12478447, 603),
+  ('Beijing', 'China', 21893095, 16411),
+  ('Dhaka', 'Bangladesh', 8906039, 338),
+  ('Osaka', 'Japan', 2725006, 225);
+SELECT * FROM cities
+SELECT name, population/area AS density FROM citiesALTER
+SELECT name||',' || population/area AS density FROM cities
+SELECT CONCAT(population/area, ' , ' ,name) as density_name FROM cities;
+SELECT CONCAT(UPPER(name), ' , ' ,UPPER(country)) AS location FROM cities;
+SELECT(area+10) AS newarea FROM cities;
+SELECT(area-10) AS newarea FROM cities;
+SELECT name,area*2 as areadouble FROM cities;
+SELECT name, area FROM cities where area<1000;
+SELECT name, area FROM cities where area>1000;
+SELECT name,population, area  FROM cities WHERE area>2000 AND population>1000000;
+SELECT name,population, area  FROM cities WHERE area<2000 OR population<1000000;
+SELECT name, area FROM cities WHERE area >=2000;
+SELECT * FROM cities WHERE population = (SELECT MIN(population)FROM cities);
+SELECT * FROM cities WHERE population = (SELECT MAX(population)FROM cities);
+DELETE FROM cities WHERE name='cario';
+SELECT * FROM cities;
+DELETE FROM cities WHERE name='Cario';
+SELECT country , SUM(population) FROM cities GROUP BY country ;
